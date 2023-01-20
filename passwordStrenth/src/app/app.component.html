@@ -3,16 +3,22 @@
       this would allow you to style it separately from other containers -->
 <section class="container-gray-green">
   <!-- <h1>CHOOOPA!</h1> -->
-  <div class="form-gray-green">
-    <label for="username"><b>Username</b></label>
-    <input class="input-gray-green" type="text" autocomplete="off" placeholder="" name="username" id="username" title="Fill in your username, please." required formControlName="name">
-
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-gray-green">
+    <label for="username"><b>Username</b>
+      <span *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">
+        Username is required
+      </span>
+    </label>
+    <input formControlName="username" class="input-gray-green" type="text" autocomplete="off" placeholder=""
+      name="username" id="username" title="Fill in your username, please." required>
     <label for="psw"><b>Password</b></label>
-    <input class="input-gray-green" type="password" placeholder="" name="psw" id="psw" title="At least 4 letters, 2 numbers, and 2 symbols." required>
+    <input formControlName="password" class="input-gray-green" type="password" placeholder="" name="psw" id="psw"
+      title="At least 4 letters, 2 numbers, and 2 symbols." required>
     <div class="psw-strenth-bar"><span class="psw-strenth-bar__letters">letters</span><span
         class="psw-strenth-bar__digits">digits</span><span class="psw-strenth-bar__symbols">symbols</span>
     </div>
-    <button type="button" class="button-gray-green">Login</button>
-  </div>
+    <button type="submit" [disabled]="form.invalid" class="button-gray-green">Login</button>
+  </form>
 </section>
+<p>Form Value: {{ form.value | json }}</p>
 <!-- <div class="container"><p>CHOOOPA</p></div> -->

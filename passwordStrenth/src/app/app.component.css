@@ -39,6 +39,7 @@ this would allow you to style it separately from other containers */
     border: 1px solid gainsboro;
 }
 .form-gray-green label {
+  position: relative;
     color: gray;
 }
 .form-gray-green .input-gray-green:focus{
@@ -107,4 +108,10 @@ this would allow you to style it separately from other containers */
 
 .psw-strenth-bar [class$=red] {
   background-color: red;
+}
+
+.alert {
+  position: absolute;
+  color: palevioletred;
+  right: 0px;
 }
