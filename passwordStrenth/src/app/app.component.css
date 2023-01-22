@@ -67,6 +67,10 @@ this would allow you to style it separately from other containers */
     background-color: forestgreen;
 }
 
+.button-gray-green:disabled {
+  background-color: gainsboro;
+}
+
 #smile{
     color: cadetblue;
     text-align: center;
@@ -91,6 +95,15 @@ this would allow you to style it separately from other containers */
   justify-content: space-around;
 }
 
+.psw-strenth-bar__line{
+  display: grid;
+  justify-content: stretch;
+  grid-auto-flow: column;
+  font-size: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+
 [class^=psw-strenth-bar__] {
   font-family: monospace;
   color: white;
@@ -99,7 +112,7 @@ this would allow you to style it separately from other containers */
 }
 
 .psw-strenth-bar [class$=yellow] {
-  background-color: gold;
+  background-color: orange;
 }
 
 .psw-strenth-bar [class$=green] {
@@ -108,6 +121,10 @@ this would allow you to style it separately from other containers */
 
 .psw-strenth-bar [class$=red] {
   background-color: red;
+}
+
+.psw-strenth-bar [class$=gray] {
+  background-color: gray;
 }
 
 .alert {

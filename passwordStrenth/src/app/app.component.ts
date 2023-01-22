@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-root',
@@ -14,19 +14,33 @@ export class AppComponent implements OnInit {
 
   title = 'passwordStrenth';
 
-  constructor(private fb: FormBuilder) {}
+  /* Old syntax */
+  // constructor(private fb: FormBuilder) {}
+
+  // ngOnInit() {
+  //   this.form = this.fb.group({
+  //     username: ['', [Validators.required]],
+  //     password: ['']
+  //   });
+  //   this.form.valueChanges.subscribe(console.log)
+  // }
+  /* New syntax */
 
   ngOnInit() {
-    this.form = this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['']
-    });
-    this.form.valueChanges.subscribe(console.log)
+    this.form = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        this.validateLetters,
+        this.validateNumbers,
+        this.validateSymbols]),
+    })
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.form.value);
+    alert('Success');
+    // this.form.reset();
   }
 
   get psw() {
@@ -36,11 +50,28 @@ export class AppComponent implements OnInit {
   get name() {
     return this.form.get('username')
   }
-  // myValidator() {
-  //   if (this.checkPassword?.length? < 8) {
-  //     console.log('psw is too short')
-  //   }
-  // }
-  // console.log('psw is confirmed')
-  // return}
+
+  validateLetters(control: FormControl) {
+    const re_letters = /[a-zA-Z]/;
+    if (!control.value.toString().match(re_letters)) {
+      return {no_letters: true}
+    }
+    return null
+  }
+
+  validateNumbers(control: FormControl) {
+    const re_digits = /\d/;
+    if (!control.value.toString().match(re_digits)) {
+      return {no_digits: true}
+    }
+    return null
+  }
+
+  validateSymbols(control: FormControl) {
+    const re_symbols = /\W/;
+    if (!control.value.toString().match(re_symbols)) {
+      return {no_symbols: true}
+    }
+    return null
+  }
 }
