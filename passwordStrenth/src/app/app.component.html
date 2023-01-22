@@ -1,8 +1,8 @@
 <h1 id="smile">Welcome back, wanderer.</h1>
 <!-- additional class for this particular form is ${element_name}-gray-green
-      this would allow you to style it separately from other containers -->
+      this would allow you to style it separately from other containers 
+     Maybe it's not needed anymore as it would become a component in Angular-->
 <section class="container-gray-green">
-  <!-- <h1>CHOOOPA!</h1> -->
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-gray-green">
     <label for="username"><b>Username</b>
       <span *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">Username is required
@@ -18,31 +18,9 @@
       title="8 or more characters: at least 1 letter, 1 number, and 1 symbol." required>
     
     <div class="psw-strenth-bar psw-strenth-bar__line">
-      <span [ngClass]="{
-      gray: psw?.errors?.['required'],
-      green: !psw?.invalid,
-      red: (psw?.errors?.['minlength'] && !psw?.errors?.['required']) || (
-        !psw?.errors?.['required'] && 
-        ((psw?.errors?.['no_letters'] && psw?.errors?.['no_digits']) || (psw?.errors?.['no_symbols'] && psw?.errors?.['no_digits']) || (psw?.errors?.['no_letters'] && psw?.errors?.['no_symbols']))
-        ),
-      yellow: ((psw?.errors?.['no_letters'] && !psw?.errors?.['no_digits'] && !psw?.errors?.['no_symbols']) && (!psw?.errors?.['required'] && !psw?.errors?.['minlength']))
-        || ((psw?.errors?.['no_digits']  && !psw?.errors?.['no_letters'] && !psw?.errors?.['no_symbols']) && (!psw?.errors?.['required'] && !psw?.errors?.['minlength']))
-        || ((psw?.errors?.['no_symbols'] && !psw?.errors?.['no_letters'] && !psw?.errors?.['no_digits']) && (!psw?.errors?.['required'] && !psw?.errors?.['minlength']))}">&nbsp;</span>
-      <span [ngClass]="{
-        gray: psw?.errors?.['required'] ||
-        (psw?.errors?.['minlength'] && !psw?.errors?.['required']) || (
-        !psw?.errors?.['required'] && 
-        ((psw?.errors?.['no_letters'] && psw?.errors?.['no_digits']) || (psw?.errors?.['no_symbols'] && psw?.errors?.['no_digits']) || (psw?.errors?.['no_letters'] && psw?.errors?.['no_symbols']))
-        ),
-        green: !psw?.invalid,
-        red: psw?.errors?.['minlength'],
-        yellow: (psw?.errors?.['no_letters'] && !psw?.errors?.['no_digits'] && !psw?.errors?.['no_symbols'] && !psw?.errors?.['minlength']) 
-        || (psw?.errors?.['no_digits']  && !psw?.errors?.['no_letters'] && !psw?.errors?.['no_symbols'] && !psw?.errors?.['minlength']) 
-        || (psw?.errors?.['no_symbols'] && !psw?.errors?.['no_letters'] && !psw?.errors?.['no_digits'] && !psw?.errors?.['minlength'])
-        && !psw?.errors?.['required'] && !psw?.errors?.['minlength']}">&nbsp;</span>
-      <span [ngClass]="{
-        gray: psw?.errors?.['required'] || (psw?.invalid && !psw?.errors?.['minlength']),
-        green: !psw?.invalid, red: psw?.errors?.['minlength']}">&nbsp;</span>
+      <span [ngStyle]="{'background-color': colorBar1()}">&nbsp;</span>
+      <span [ngStyle]="{'background-color': colorBar2()}">&nbsp;</span>
+      <span [ngStyle]="{'background-color': colorBar3()}">&nbsp;</span>
     </div>
     <div class="psw-strenth-bar">
       <span [ngClass]="{green: !psw?.errors?.['no_letters'], yellow: psw?.errors?.['no_letters'] && psw?.dirty}" class="psw-strenth-bar__letters">letters</span>
@@ -54,4 +32,6 @@
 </section>
 <p>Form Value: {{ form.value | json }}</p>
 <p>Password Errors: {{ psw?.errors | json }}</p>
-<!-- <div class="container"><p>CHOOOPA</p></div> -->
+<p>ColorBar1 Status: {{ colorBar1() | json }}</p>
+<p>ColorBar2 Status: {{ colorBar2() | json }}</p>
+<p>ColorBar3 Status: {{ colorBar3() | json }}</p>

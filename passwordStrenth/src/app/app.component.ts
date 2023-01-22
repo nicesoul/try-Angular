@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 
 @Component({
@@ -11,20 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
 export class AppComponent implements OnInit {
 
   form!: FormGroup;
-
   title = 'passwordStrenth';
-
-  /* Old syntax */
-  // constructor(private fb: FormBuilder) {}
-
-  // ngOnInit() {
-  //   this.form = this.fb.group({
-  //     username: ['', [Validators.required]],
-  //     password: ['']
-  //   });
-  //   this.form.valueChanges.subscribe(console.log)
-  // }
-  /* New syntax */
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -72,6 +58,46 @@ export class AppComponent implements OnInit {
     if (!control.value.toString().match(re_symbols)) {
       return {no_symbols: true}
     }
+    return null
+  }
+
+  colorBar3() {
+    if (!this.psw?.invalid) {
+      return 'green'};
+    if (this.psw?.errors?.['minlength']) {
+      return 'red'};
+    if (this.psw?.errors?.['required'] || this.psw?.invalid) {
+      return 'gray'};
+    return null
+  }
+
+  colorBar2() {
+    if (!this.psw?.invalid) {
+      return 'green'};
+    if (this.psw?.errors?.['minlength']) {
+      return 'red'};
+    if (this.psw?.errors?.['required'] ||
+      (this.psw?.errors?.['no_letters'] && this.psw?.errors?.['no_digits']) ||
+      (this.psw?.errors?.['no_symbols'] && this.psw?.errors?.['no_digits']) ||
+      (this.psw?.errors?.['no_letters'] && this.psw?.errors?.['no_symbols'])) {
+      return 'gray'};
+    if (this.psw?.invalid) {
+      return 'orange'};
+    return null
+  }
+
+  colorBar1() {
+    if (!this.psw?.invalid) {
+      return 'green'};
+    if (this.psw?.errors?.['required']) {
+      return 'gray'};
+    if (this.psw?.errors?.['minlength'] ||
+      (this.psw?.errors?.['no_letters'] && this.psw?.errors?.['no_digits']) ||
+      (this.psw?.errors?.['no_symbols'] && this.psw?.errors?.['no_digits']) ||
+      (this.psw?.errors?.['no_letters'] && this.psw?.errors?.['no_symbols'])) {
+      return 'red'};
+    if (this.psw?.invalid) {
+      return 'orange'};
     return null
   }
 }
