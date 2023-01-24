@@ -4,7 +4,6 @@
     border-radius: 4px;
     font-family: 'Fira Sans', sans-serif;
     letter-spacing: 0.1ch;
-    /* font-size: large; */
 }
 /* not used, from a previous project */
 :root{
@@ -19,8 +18,6 @@ https://webaim.org/resources/contrastchecker/ */
     background-color: burlywood;
     color: #111111;
 }
-/* additional class for this particular form is ${element_name}-gray-green
-this would allow you to style it separately from other containers */
 .container-gray-green {
     display: flex;
     justify-content: center;
@@ -66,29 +63,23 @@ this would allow you to style it separately from other containers */
 .button-gray-green:hover, .button-gray-green:focus {
     background-color: forestgreen;
 }
-
 .button-gray-green:disabled {
   background-color: gainsboro;
 }
-
 #smile{
     color: cadetblue;
     text-align: center;
     animation: smile_fade_out 30s ease-in-out 20s infinite;
     /* animation: example 2s ease 0s 1 alternate; */
-    /* animation: name    duration timing-function delay iteration-count direction fill-mode; */
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
 }
-
 @keyframes smile_fade_out {
     0% {color: cadetblue;}
     100% {color: cadetblue;}
     50% {color: lightgray;}
     10% {color: lightgray;}
     90% {color: lightgray;}
-    
   }
-
-
 /* password strenth part */
 .psw-strenth-bar {
   display: flex;
@@ -103,7 +94,6 @@ this would allow you to style it separately from other containers */
   margin-bottom: 0.5rem;
 }
 
-
 [class^=psw-strenth-bar__] {
   font-family: monospace;
   color: white;
@@ -111,7 +101,7 @@ this would allow you to style it separately from other containers */
   padding: 0.2rem 0.5rem;
 }
 
-.psw-strenth-bar [class$=yellow] {
+.psw-strenth-bar [class$=orange] {
   background-color: orange;
 }
 

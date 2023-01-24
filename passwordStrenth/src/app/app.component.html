@@ -1,18 +1,15 @@
 <h1 id="smile">Welcome back, wanderer.</h1>
-<!-- additional class for this particular form is ${element_name}-gray-green
-      this would allow you to style it separately from other containers 
-     Maybe it's not needed anymore as it would become a component in Angular-->
 <section class="container-gray-green">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-gray-green">
     <label for="username"><b>Username</b>
-      <span *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">Username is required
-      </span>
+      <!-- Commented as this is obvious for the moment -->
+      <!-- <span *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="alert alert-danger">Username is required</span> -->
     </label>
     <input formControlName="username" class="input-gray-green" type="text" autocomplete="off" placeholder=""
       name="username" id="username" title="Fill in your username, please." required>
     <label for="psw"><b>Password</b>
-      <span *ngIf="psw?.invalid && (psw?.dirty || psw?.touched)" class="alert alert-danger">Check your password
-      </span>
+      <!-- Commented as this is obvious for the moment -->
+      <!-- <span *ngIf="psw?.invalid && (psw?.dirty || psw?.touched)" class="alert alert-danger">Check your password</span> -->
     </label>
     <input formControlName="password" class="input-gray-green" type="password" placeholder="" name="psw" id="psw"
       title="8 or more characters: at least 1 letter, 1 number, and 1 symbol." required>
@@ -23,9 +20,9 @@
       <span [ngStyle]="{'background-color': colorBar3()}">&nbsp;</span>
     </div>
     <div class="psw-strenth-bar">
-      <span [ngClass]="{green: !psw?.errors?.['no_letters'], yellow: psw?.errors?.['no_letters'] && psw?.dirty}" class="psw-strenth-bar__letters">letters</span>
-      <span [ngClass]="{green: !psw?.errors?.['no_digits'], yellow: psw?.errors?.['no_digits'] && psw?.dirty}" class="psw-strenth-bar__digits">digits</span>
-      <span [ngClass]="{green: !psw?.errors?.['no_symbols'], yellow: psw?.errors?.['no_symbols'] && psw?.dirty}" class="psw-strenth-bar__symbols">symbols</span>
+      <span [ngClass]="{green: !psw?.errors?.['no_letters'], orange: psw?.errors?.['no_letters'] && psw?.dirty}" class="psw-strenth-bar__letters">letters</span>
+      <span [ngClass]="{green: !psw?.errors?.['no_digits'], orange: psw?.errors?.['no_digits'] && psw?.dirty}" class="psw-strenth-bar__digits">digits</span>
+      <span [ngClass]="{green: !psw?.errors?.['no_symbols'], orange: psw?.errors?.['no_symbols'] && psw?.dirty}" class="psw-strenth-bar__symbols">symbols</span>
     </div>
     <button type="submit" [disabled]="form.invalid" class="button-gray-green">Login</button>
   </form>
